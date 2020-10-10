@@ -78,14 +78,14 @@ jobs:
         uses: thedoctor0/zip-release@master
         with:
           filename: covid-dashboard-build-release.zip
-          path: covid-dashboard/covid-dashboard-build
+#          path: covid-dashboard/covid-dashboard-build
       
        # Upload artifact of the current workflow
       - name: Upload build zip artifact
         uses: actions/upload-artifact@v2
         with:
           name: covid-dashboard-build-release.zip
-          path: covid-dashboard/covid-dashboard-build
+          path: covid-dashboard-build-release
       
       # Make official GitHub release which will trigger
       # sending the mail with link for access
