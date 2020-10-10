@@ -38,7 +38,7 @@ jobs:
       - name: Share artifact inside workflow
         uses: actions/upload-artifact@v2
         with:
-          name: covid19-dashboard-build
+          name: covid-dashboard-build
           path: build
   deploy:
     runs-on: ubuntu-latest
@@ -51,7 +51,7 @@ jobs:
       - name: Get artifact
         uses: actions/download-artifact@v2
         with:
-          name: covid19-dashboard-build
+          name: covid-dashboard-build
       # Set the credentials from repository settings/secrets
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -62,7 +62,8 @@ jobs:
       # Copy the files from build folder to the S3 bucket
       - name: Deploy to S3
         run: aws s3 sync . s3://covid19-dashboard
-#        working-directory: covid19-dashboard-build
+#        working-directory: covid-dashboard-build
+         path: covid-dashboard-build
   release:
     runs-on: ubuntu-latest
     needs: deploy
@@ -71,27 +72,27 @@ jobs:
       - name: Get artifact
         uses: actions/download-artifact@v2
         with:
-          name: covid19-dashboard-build
+          name: covid-dashboard-build
       
        # Zip the build using external action
       - name: Zip build
         uses: thedoctor0/zip-release@master
         with:
-          filename: covid19-dashboard-release.zip
-          path: covid19-dashboard-build
+          filename: covid-dashboard-release.zip
+          path: covid-dashboard-build
       
        # Upload artifact of the current workflow
       - name: Upload build zip artifact
         uses: actions/upload-artifact@v2
         with:
-          name: covid19-dashboard-release.zip
-          path: covid19-dashboard-release.zip
+          name: covid-dashboard-release.zip
+          path: covid-dashboard-build
       
       # Make official GitHub release which will trigger
       # sending the mail with link for access
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: covid19-dashboard-release.zip
+          artifacts: covid-dashboard-release.zip
           body: http://covid19-dashboard.s3-website-us-east-1.amazonaws.com/index.html
           token: ${{ secrets.GITHUB_TOKEN }}
