@@ -62,7 +62,7 @@ jobs:
       # Copy the files from build folder to the S3 bucket
       - name: Deploy to S3
         run: aws s3 sync . s3://covid19-dashboard
-        working-directory: covid-dashboard-build
+#        working-directory: covid-dashboard-build
   release:
     runs-on: ubuntu-latest
     needs: deploy
@@ -78,14 +78,14 @@ jobs:
         uses: thedoctor0/zip-release@master
         with:
           filename: covid-dashboard-build-release.zip
-          path: covid-dashboard-build
+          path: covid-dashboard/covid-dashboard-build
       
        # Upload artifact of the current workflow
       - name: Upload build zip artifact
         uses: actions/upload-artifact@v2
         with:
           name: covid-dashboard-build-release.zip
-          path: covid-dashboard-build
+          path: covid-dashboard/covid-dashboard-build
       
       # Make official GitHub release which will trigger
       # sending the mail with link for access
