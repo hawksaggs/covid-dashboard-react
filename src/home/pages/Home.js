@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 
 import Box from "../components/Box";
 import TableComponent from '../components/Table';
+import DataTable from "../components/DataTable";
 
 const Home = (props) => {
     const [cases, setCases] = useState('');
@@ -86,7 +87,11 @@ const Home = (props) => {
                 </div>
             </div>
 
-            <TableComponent states={states}/>
+            {/*<TableComponent states={states}/>*/}
+            {/*<div className={"row"}>*/}
+                <DataTable data={states}/>
+            {/*</div>*/}
+
         </div>
     );
 };
