@@ -78,14 +78,14 @@ jobs:
       - name: Zip build
         uses: thedoctor0/zip-release@master
         with:
-          filename: covid-dashboard-release.zip
+          filename: covid-dashboard-build-release.zip
           path: covid-dashboard-build
       
        # Upload artifact of the current workflow
       - name: Upload build zip artifact
         uses: actions/upload-artifact@v2
         with:
-          name: covid-dashboard-release.zip
+          name: covid-dashboard-build-release.zip
           path: covid-dashboard-build
       
       # Make official GitHub release which will trigger
@@ -93,6 +93,6 @@ jobs:
       - name: Release
         uses: ncipollo/release-action@v1
         with:
-          artifacts: covid-dashboard-release.zip
+          artifacts: covid-dashboard-build-release.zip
           body: http://covid19-dashboard.s3-website-us-east-1.amazonaws.com/index.html
           token: ${{ secrets.GITHUB_TOKEN }}
