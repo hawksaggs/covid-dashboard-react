@@ -61,7 +61,8 @@ jobs:
           aws-region: us-east-1
       # Copy the files from build folder to the S3 bucket
       - name: Deploy to S3
-        run: aws s3 sync . s3://covid19-dashboard --acl public-read
+        run: |
+          aws s3 sync . s3://covid19-dashboard
         working-directory: covid19-dashboard-build
   release:
     runs-on: ubuntu-latest
