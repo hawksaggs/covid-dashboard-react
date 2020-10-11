@@ -10,14 +10,14 @@ const SplineChart = (props) => {
     const [recovered, setRecovered] = useState([]);
 
     const mapDataPoints = (props) => {
-        console.log('SplineChart: ', props);
+        // console.log('SplineChart: ', props);
         const cases = (props.data && props.data.timeline) ? Object.keys(props.data.timeline.cases).map((key) => {
             return {
                 x: new Date(key),
                 y: props.data.timeline.cases[key]
             };
         }) : [];
-        console.log('SplineChar | cases: ', cases);
+        // console.log('SplineChar | cases: ', cases);
         setCases(cases);
 
         const deaths = (props.data && props.data.timeline) ? Object.keys(props.data.timeline.deaths).map((key) => {
@@ -26,7 +26,7 @@ const SplineChart = (props) => {
                 y: props.data.timeline.deaths[key]
             };
         }) : [];
-        console.log('SplineChar | deaths: ', deaths);
+        // console.log('SplineChar | deaths: ', deaths);
         setDeaths(deaths);
 
         const recovered = (props.data && props.data.timeline) ? Object.keys(props.data.timeline.recovered).map((key) => {
@@ -35,7 +35,7 @@ const SplineChart = (props) => {
                 y: props.data.timeline.recovered[key]
             };
         }) : [];
-        console.log('SplineChar | recovered: ', recovered);
+        // console.log('SplineChar | recovered: ', recovered);
         setRecovered(recovered);
     };
 

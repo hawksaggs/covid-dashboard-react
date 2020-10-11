@@ -8,7 +8,7 @@ const Charts = (props) => {
     const getHistorialDataIndia = async () => {
         const data = await fetch('https://disease.sh/v3/covid-19/historical/india?lastdays=all')
             .then(response => response.json());
-        console.log('getHistorialDataIndia: ', data);
+        // console.log('getHistorialDataIndia: ', data);
         setChartData(data);
     };
 
