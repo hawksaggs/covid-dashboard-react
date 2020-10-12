@@ -93,5 +93,5 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: covid-dashboard-build-release.zip
-          body: http://covid19-dashboard.s3-website-us-east-1.amazonaws.com/index.html
+          body: https://covid.neuproelectro.com
           token: ${{ secrets.GITHUB_TOKEN }}
