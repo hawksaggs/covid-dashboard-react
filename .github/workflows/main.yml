@@ -62,7 +62,7 @@ jobs:
       # Copy the files from build folder to the S3 bucket
       - name: Deploy to S3
         run: aws s3 sync . s3://covid19-dashboard
-      # cache invalidate in cloudfront
+      # cache invalidate in cloudfronts
       - name: Cache Invalidation
         run: aws cloudfront create-invalidation --distribution-id ${{secrets.AWS_CLOUDFRONT_DISTRIBUTION_ID}} --paths "/*"
   release:
