@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import CanvasJSReact from "../../assets/canvasjs.react";
 
-const CanvasJS = CanvasJSReact.CanvasJS;
+// const CanvasJS = CanvasJSReact.CanvasJS;
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 const SplineChart = (props) => {

@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from "react";
 
 import Box from "../components/Box";
-import TableComponent from '../components/Table';
 import DataTable from "../components/DataTable";
 import VaccineTable from "../components/VaccineTable";
+
+import './Home.css';
 
 const Home = (props) => {
     const [cases, setCases] = useState('');
@@ -12,7 +13,7 @@ const Home = (props) => {
     const [todayDeaths, setTodayDeaths] = useState('');
     const [recovered, setRecovered] = useState('');
     const [todayRecovered, setTodayRecovered] = useState('');
-    const [updated, setUpdated] = useState('');
+    // const [updated, setUpdated] = useState('');
     const [activeCase, setActiveCase] = useState('');
     const [indActive, setIndActive] = useState('');
     const [indRecovered, setIndRecovered] = useState('');
@@ -33,7 +34,7 @@ const Home = (props) => {
         setTodayDeaths(caseWorldWide.todayDeaths);
         setRecovered(caseWorldWide.recovered);
         setTodayRecovered(caseWorldWide.todayRecovered);
-        setUpdated(caseWorldWide.updated);
+        // setUpdated(caseWorldWide.updated);
         setActiveCase(caseWorldWide.active);
     };
 
@@ -61,7 +62,7 @@ const Home = (props) => {
         <div className={"row"}>
             <div className={"row"}>
                 <div className="shadow-lg p-3 mb-3 mt-3 bg-white rounded">
-                    <div className={"row box-text m-0"}>
+                    <div className={"center box-text m-0"}>
                         <strong>Total Cases WorldWide</strong>
 
                     </div>
@@ -75,7 +76,7 @@ const Home = (props) => {
             </div>
             <div className={"row"}>
                 <div className="shadow-lg p-3 mb-3 bg-white rounded">
-                    <div className={"row box-text m-0"}>
+                    <div className={"center box-text m-0"}>
                         <strong>Total Cases India</strong>
 
                     </div>

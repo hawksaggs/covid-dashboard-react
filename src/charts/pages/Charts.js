@@ -7,7 +7,7 @@ import './Charts.css';
 
 const Charts = (props) => {
     const [chartData, setChartData] = useState({});
-    const [isLoading, setIsLoading] = useState(false);
+    // const [isLoading, setIsLoading] = useState(false);
     const [content, setContent] = useState("");
 
     const getHistorialDataIndia = async () => {

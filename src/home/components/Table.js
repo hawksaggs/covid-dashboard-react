@@ -43,21 +43,6 @@ const TableComponent = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {/* {(props.states || []).map((state, index) => {
-                    return (
-                        <tr>
-                            <td key={index + 1}>{state.state}</td>
-                            <td key={index + 2}>{state.cases}</td>
-                            <td key={index + 3}>{state.active}</td>
-                            <td key={index + 4}>{state.recovered}</td>
-                            <td key={index + 5}>{state.deaths}</td>
-                            <td key={index + 6}>{state.todayCases}</td>
-                            <td key={index + 7}>{state.todayActive}</td>
-                            <td key={index + 8}>{state.todayRecovered}</td>
-                            <td key={index + 9}>{state.todayDeaths}</td>
-                        </tr>
-                    )
-                })} */}
                 {data}
             </tbody>
         </Table>
