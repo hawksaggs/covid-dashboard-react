@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import Box from "../components/Box";
 import TableComponent from '../components/Table';
 import DataTable from "../components/DataTable";
+import VaccineTable from "../components/VaccineTable";
 
 const Home = (props) => {
     const [cases, setCases] = useState('');
@@ -59,8 +60,8 @@ const Home = (props) => {
     return (
         <div className={"row"}>
             <div className={"row"}>
-                <div className="shadow-lg p-3 mb-5 bg-white rounded">
-                    <div className={"row box-text"}>
+                <div className="shadow-lg p-3 mb-3 mt-3 bg-white rounded">
+                    <div className={"row box-text m-0"}>
                         <strong>Total Cases WorldWide</strong>
 
                     </div>
@@ -73,8 +74,8 @@ const Home = (props) => {
                 </div>
             </div>
             <div className={"row"}>
-                <div className="shadow-lg p-3 mb-5 bg-white rounded">
-                    <div className={"row box-text"}>
+                <div className="shadow-lg p-3 mb-3 bg-white rounded">
+                    <div className={"row box-text m-0"}>
                         <strong>Total Cases India</strong>
 
                     </div>
@@ -91,6 +92,8 @@ const Home = (props) => {
             {/*<div className={"row"}>*/}
                 <DataTable data={states}/>
             {/*</div>*/}
+                <VaccineTable />
+
 
         </div>
     );
