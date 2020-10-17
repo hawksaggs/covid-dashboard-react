@@ -60,19 +60,6 @@ const DataTable = (props) => {
                 Toolbar: props => (
                     <div>
                         <MTableToolbar {...props} />
-                        <div>
-                            <Autocomplete
-                                value={value}
-                                onChange={(event, newValue) => {
-                                    setValue(newValue);
-                                }}
-                                id="combo-box-demo"
-                                options={props.data}
-                                getOptionLabel={(option) => option && option.state}
-                                style={{ width: 300 }}
-                                renderInput={(params) => <TextField {...params} label="State" variant="outlined" />}
-                            />
-                        </div>
                     </div>
                 )
             }}
