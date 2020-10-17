@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 import Box from "../components/Box";
 import DataTable from "../components/DataTable";
@@ -7,55 +9,75 @@ import VaccineTable from "../components/VaccineTable";
 import './Home.css';
 
 const Home = (props) => {
-    const [cases, setCases] = useState('');
-    const [todayCases, setTodayCases] = useState('');
-    const [deaths, setDeaths] = useState('');
-    const [todayDeaths, setTodayDeaths] = useState('');
-    const [recovered, setRecovered] = useState('');
-    const [todayRecovered, setTodayRecovered] = useState('');
-    // const [updated, setUpdated] = useState('');
-    const [activeCase, setActiveCase] = useState('');
-    const [indActive, setIndActive] = useState('');
-    const [indRecovered, setIndRecovered] = useState('');
-    const [indDeaths, setIndDeaths] = useState('');
-    const [indCases, setIndCases] = useState('');
-    const [indTodayActiveCases, setIndTodayActiveCases] = useState('');
-    const [indTodayRecovered, setIndTodayRecovered] = useState('');
-    const [indTodayDeaths, setIndTodayDeaths] = useState('');
-    const [indTodayCases, setIndTodayCases] = useState('');
+    const [totalCases, setTotalCases] = useState('');
+    const [totalTodayCases, setTotalTodayCases] = useState('');
+    const [totalDeaths, setTotalDeaths] = useState('');
+    const [totalTodayDeaths, setTotalTodayDeaths] = useState('');
+    const [totalRecovered, setTotalRecovered] = useState('');
+    const [totalTodayRecovered, setTotalTodayRecovered] = useState('');
+    const [totalActiveCase, setTotalActiveCase] = useState('');
+    const [countryActive, setCountryActive] = useState('');
+    const [countryRecovered, setCountryRecovered] = useState('');
+    const [countryDeaths, setCountryDeaths] = useState('');
+    const [countryCases, setCountryCases] = useState('');
+    const [countryTodayActiveCases, setCountryTodayActiveCases] = useState('');
+    const [countryTodayRecovered, setCountryTodayRecovered] = useState('');
+    const [countryTodayDeaths, setCountryTodayDeaths] = useState('');
+    const [countryTodayCases, setCountryTodayCases] = useState('');
     const [states, setStates] = useState([]);
+    const [countries, setCountries] = useState([]);
+    const [value, setValue] = useState('India');
+    const [allCountriesCase, setAllCountriesCase] = useState([]);
 
     const getCaseWorldWide = async () => {
         const caseWorldWide = await fetch('https://disease.sh/v3/covid-19/all?yesterday=true&allowNull=true')
             .then(response => response.json());
-        setCases(caseWorldWide.cases);
-        setTodayCases(caseWorldWide.todayCases);
-        setDeaths(caseWorldWide.deaths);
-        setTodayDeaths(caseWorldWide.todayDeaths);
-        setRecovered(caseWorldWide.recovered);
-        setTodayRecovered(caseWorldWide.todayRecovered);
-        // setUpdated(caseWorldWide.updated);
-        setActiveCase(caseWorldWide.active);
+        setTotalCases(caseWorldWide.cases);
+        setTotalTodayCases(caseWorldWide.todayCases);
+        setTotalDeaths(caseWorldWide.deaths);
+        setTotalTodayDeaths(caseWorldWide.todayDeaths);
+        setTotalRecovered(caseWorldWide.recovered);
+        setTotalTodayRecovered(caseWorldWide.todayRecovered);
+        setTotalActiveCase(caseWorldWide.active);
     };
 
     const getCaseIndia = async () => {
         const caseIndia = await fetch('https://disease.sh/v3/covid-19/gov/india')
             .then(response => response.json());
-        setIndActive(caseIndia.total.active);
-        setIndRecovered(caseIndia.total.recovered);
-        setIndDeaths(caseIndia.total.deaths);
-        setIndCases(caseIndia.total.cases);
-        setIndTodayActiveCases(caseIndia.total.todayActive);
-        setIndTodayRecovered(caseIndia.total.todayRecovered);
-        setIndTodayDeaths(caseIndia.total.todayDeaths);
-        setIndTodayCases(caseIndia.total.todayCases);
+        setCountryActive(caseIndia.total.active);
+        setCountryRecovered(caseIndia.total.recovered);
+        setCountryDeaths(caseIndia.total.deaths);
+        setCountryCases(caseIndia.total.cases);
+        setCountryTodayActiveCases(caseIndia.total.todayActive);
+        setCountryTodayRecovered(caseIndia.total.todayRecovered);
+        setCountryTodayDeaths(caseIndia.total.todayDeaths);
+        setCountryTodayCases(caseIndia.total.todayCases);
         setStates(caseIndia.states);
     };
+
+    // const countryList = async () => {
+    //     const response = await fetch('https://restcountries.eu/rest/v2/all')
+    //         .then(response => response.json());
+    //     console.log('CountryList: ', response);
+    //     setCountries(response);
+    // }
+
+    const getAllCountriesCases = async () => {
+        const response = await fetch('https://disease.sh/v3/covid-19/countries?yesterday=true&twoDaysAgo=true&allowNull=false')
+            .then(response => response.json());
+        const countryList = response.map((item) => {
+            return item.country;
+        });
+        setCountries(countryList);
+        setAllCountriesCase(response);
+    }
 
 
     useEffect(() => {
         getCaseWorldWide();
         getCaseIndia();
+        // countryList();
+        getAllCountriesCases();
     }, []);
 
     return (
@@ -64,38 +86,62 @@ const Home = (props) => {
                 <div className="shadow-lg p-3 mb-3 mt-3 bg-white rounded">
                     <div className={"center box-text m-0"}>
                         <strong>Total Cases WorldWide</strong>
-
                     </div>
                     <div className={"row"}>
-                        <Box type={"Total"} count={cases} today={todayCases} class={"yellow"}/>
-                        <Box type={"Active"} count={activeCase} class={"blue"}/>
-                        <Box type={"Recovered"} count={recovered} today={todayRecovered} class={"green"}/>
-                        <Box type={"Deaths"} count={deaths} today={todayDeaths} class={"red"}/>
+                        <Box type={"Total"} count={totalCases} today={totalTodayCases} class={"yellow"}/>
+                        <Box type={"Active"} count={totalActiveCase} class={"blue"}/>
+                        <Box type={"Recovered"} count={totalRecovered} today={totalTodayRecovered} class={"green"}/>
+                        <Box type={"Deaths"} count={totalDeaths} today={totalTodayDeaths} class={"red"}/>
                     </div>
                 </div>
             </div>
             <div className={"row"}>
                 <div className="shadow-lg p-3 mb-3 bg-white rounded">
                     <div className={"center box-text m-0"}>
-                        <strong>Total Cases India</strong>
-
+                        <strong>Total Cases {value}</strong>
+                        <div>
+                        <Autocomplete
+                                value={value}
+                                onChange={(event, newValue) => {
+                                    console.log(newValue);
+                                    setValue(newValue);
+                                    const country = allCountriesCase.find(item => item.country === newValue);
+                                    console.log(country);
+                                    if (country) {
+                                        setCountryCases(country.cases);
+                                        setCountryTodayCases(country.todayCases);
+                                        setCountryActive(country.active);
+                                        setCountryRecovered(country.recovered);
+                                        setCountryTodayRecovered(country.todayRecovered);
+                                        setCountryDeaths(country.deaths);
+                                        setCountryTodayDeaths(country.todayDeaths);
+                                    }
+                                }}
+                                id="combo-box-demo1"
+                                options={countries}
+                                getOptionLabel={(option) => option}
+                                getOptionSelected={(option, value) => option === value}
+                                // style={{ width: 300 }}
+                                renderInput={(params) => <TextField {...params} label="Countries" variant="outlined" />}
+                            />
+                        </div>
                     </div>
                     <div className={"row"}>
-                        <Box type={"Total"} count={indCases} today={indTodayCases} class={"yellow"}/>
-                        <Box type={"Active"} count={indActive} today={indTodayActiveCases} class={"blue"}/>
-                        <Box type={"Recovered"} count={indRecovered} today={indTodayRecovered} class={"green"}/>
-                        <Box type={"Deaths"} count={indDeaths} today={indTodayDeaths} class={"red"}/>
+                        <Box type={"Total"} count={countryCases} today={countryTodayCases} class={"yellow"}/>
+                        <Box type={"Active"} count={countryActive} today={countryTodayActiveCases} class={"blue"}/>
+                        <Box type={"Recovered"} count={countryRecovered} today={countryTodayRecovered} class={"green"}/>
+                        <Box type={"Deaths"} count={countryDeaths} today={countryTodayDeaths} class={"red"}/>
                     </div>
                 </div>
             </div>
 
             {/*<TableComponent states={states}/>*/}
-            {/*<div className={"row"}>*/}
-                <DataTable data={states}/>
+            {/*<div className={"row shadow-lg bg-white"}>*/}
+                <DataTable data={states} />
             {/*</div>*/}
+            {/*<div className={"shadow-lg bg-white mt-3"}>*/}
                 <VaccineTable />
-
-
+            {/*</div>*/}
         </div>
     );
 };

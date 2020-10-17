@@ -22,14 +22,14 @@ const Charts = (props) => {
     }, []);
 
     return (
-        <div className={""}>
-            {/*<div className={"row"}>*/}
+        <div className={"mt-3"}>
+            <div className={"shadow-lg bg-white"}>
                 <SplineChart data={chartData} />
-            {/*</div>*/}
-            {/*<div className={"row"}>*/}
+            </div>
+            <div className={"shadow-lg bg-white mt-3"}>
                 <MapChart setTooltipContent={setContent} />
                 <ReactTooltip html={true}>{content}</ReactTooltip>
-            {/*</div>*/}
+            </div>
         </div>
 
     );

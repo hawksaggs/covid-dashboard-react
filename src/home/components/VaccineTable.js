@@ -43,7 +43,7 @@ const VaccineTable = (props) => {
                 }
             ]}
             data={vaccineData}
-            style={{width:"100%", marginTop:"25px"}}
+            style={{width:"100%", marginTop:"25px", marginLeft: "0px"}}
             options={{
                 sorting: true,
                 exportButton: true
