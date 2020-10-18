@@ -12,7 +12,7 @@ const Box = (props) => {
             <strong className="row box-text m-0">{props.count}</strong>
             <strong className={"row box-text m-0"}>
                 {props.today ?
-                    <span className={`${(props.today > 0 && props.type !== 'Recovered') ? 'up' : 'down'}`}>({props.today}{props.today > 0 ? <FontAwesomeIcon icon={faArrowUp}/> : <FontAwesomeIcon icon={faArrowDown}/>})</span>
+                    <span className={`${(props.today > 0 && props.type !== 'Recovered') ? 'up' : 'down'}`}>({props.today < 0 ? -(props.today) : props.today}{props.today > 0 ? <FontAwesomeIcon icon={faArrowUp}/> : <FontAwesomeIcon icon={faArrowDown}/>})</span>
                     : null}
             </strong>
         </div>

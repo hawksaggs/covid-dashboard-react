@@ -89,7 +89,7 @@ const Home = (props) => {
                     </div>
                     <div className={"row"}>
                         <Box type={"Total"} count={totalCases} today={totalTodayCases} class={"yellow"}/>
-                        <Box type={"Active"} count={totalActiveCase} class={"blue"}/>
+                        <Box type={"Active"} count={totalActiveCase} today={totalTodayCases - totalTodayRecovered} class={"blue"}/>
                         <Box type={"Recovered"} count={totalRecovered} today={totalTodayRecovered} class={"green"}/>
                         <Box type={"Deaths"} count={totalDeaths} today={totalTodayDeaths} class={"red"}/>
                     </div>
@@ -111,6 +111,7 @@ const Home = (props) => {
                                         setCountryCases(country.cases);
                                         setCountryTodayCases(country.todayCases);
                                         setCountryActive(country.active);
+                                        setCountryTodayActiveCases(country.todayCases - country.todayRecovered);
                                         setCountryRecovered(country.recovered);
                                         setCountryTodayRecovered(country.todayRecovered);
                                         setCountryDeaths(country.deaths);
