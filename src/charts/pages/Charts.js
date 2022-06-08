@@ -19,7 +19,7 @@ const Charts = (props) => {
     const getHistorialData = async () => {
         const data = await fetch('https://disease.sh/v3/covid-19/historical?lastdays=all')
             .then(response => response.json());
-        console.log('getHistorialData: ', data);
+        // console.log('getHistorialData: ', data);
         const countries = data.reduce((prev, curr) => {
             if (prev.has(curr.country) && curr.province) {
                 prev.get(curr.country).add(curr.province);
